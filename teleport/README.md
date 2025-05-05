@@ -1,6 +1,5 @@
 # Teleport
 
-# Enable kind load balancer controller
 ```
 kind create cluster --config ./control-plane.yaml
 
