@@ -1,0 +1,44 @@
+chartMode: standalone
+clusterName: teleport.example.com
+
+auth:
+  teleportConfig:
+    # put any teleport.yaml auth configuration overrides here
+    teleport:
+      log:
+        output: stderr
+        severity: DEBUG
+
+    auth_service:
+      enabled: true
+      web_idle_timeout: 1h
+      authentication:
+        locking_mode: best_effort
+
+proxy:
+  teleportConfig:
+    # put any teleport.yaml proxy configuration overrides here
+    teleport:
+      log:
+        output: stderr
+        severity: DEBUG
+
+    proxy_service:
+      https_keypairs: []
+      https_keypairs_reload_interval: 12h
+      public_addr: 
+      # optionally override the public addresses for the cluster
+      # public_addr: custom.example.com:443
+      # tunnel_public_addr: custom.example.com:3024
+
+# If you are running Kubernetes 1.23 or above, disable PodSecurityPolicies
+podSecurityPolicy:
+  enabled: false
+
+# OPTIONAL - when using highly-available storage for both backend AND session recordings
+# you can disable disk persistence and replicate auth pods.
+#
+# persistence:
+#   enabled: false
+# highAvailability:
+#   replicaCount: 2
